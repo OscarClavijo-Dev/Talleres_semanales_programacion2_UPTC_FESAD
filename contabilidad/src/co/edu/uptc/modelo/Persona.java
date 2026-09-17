@@ -2,6 +2,8 @@ package co.edu.uptc.modelo;
 
 public class Persona {
 
+	private long id;
+	
 	protected String primerNombre;
 	protected String otrosoNombres;
 	
