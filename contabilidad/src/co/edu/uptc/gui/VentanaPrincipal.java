@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import co.edu.uptc.negocio.GestionSeguridad;
+import co.edu.uptc.negocio.NominaConfig;
 import co.edu.uptc.negocio.dto.CredencialDto;
 
 public class VentanaPrincipal extends JFrame{
@@ -14,6 +15,7 @@ public class VentanaPrincipal extends JFrame{
 	private PanelLogin pLogin;
 	private PanelCentral pCentral;
 	private GestionSeguridad seguridad;
+	private NominaConfig nominaConfig;
 	
 	private Evento evento;
 	public VentanaPrincipal() {
@@ -29,6 +31,7 @@ public class VentanaPrincipal extends JFrame{
 		pLogin=new PanelLogin(evento);
 		pCentral= new PanelCentral();
 		seguridad= new GestionSeguridad();
+		nominaConfig= new NominaConfig();
 		add(pLogin,BorderLayout.CENTER);
 	}
 	
