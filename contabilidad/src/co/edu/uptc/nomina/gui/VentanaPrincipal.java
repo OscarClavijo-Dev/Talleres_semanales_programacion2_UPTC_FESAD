@@ -13,8 +13,9 @@ import co.edu.uptc.nomina.negocio.NominaConfig;
 public class VentanaPrincipal extends JFrame{
 	
 	private PanelLogin pLogin;
-	private PanelCentral pCentral;
+	private PanelPadreEmpeladoFijo pCentral;
 	private GestionSeguridad seguridad;
+	private DialogoEmpleadoFijo nuevoEmplfijo;
 	private NominaConfig nominaConfig;
 	
 	private Evento evento;
@@ -29,9 +30,9 @@ public class VentanaPrincipal extends JFrame{
 		//Inicializar relaciones o asociaciones
 		evento = new Evento(this);
 		pLogin=new PanelLogin(evento);
-		pCentral= new PanelCentral();
+		pCentral= new PanelPadreEmpleadoFijo(evento);
 		seguridad= new GestionSeguridad();
-		nominaConfig= new NominaConfig();
+		config= new NominaConfig();
 		add(pLogin,BorderLayout.CENTER);
 	}
 	
