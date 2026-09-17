@@ -40,7 +40,7 @@ public class VentanaPrincipal extends JFrame{
 		v.setVisible(Boolean.TRUE);
 	}
 	public void Loguear() {
-		
+		nominaConfig.getGestEmpleadoFijo().agregarEmpleado(null);
 		try {
 			CredencialDto validar=pLogin.getCredencialesUsuario();
 			
