@@ -2,11 +2,11 @@ package co.edu.uptc.modelo;
 
 public class Persona {
 
-	private String primerNombre;
-	private String otrosoNombres;
+	protected String primerNombre;
+	protected String otrosoNombres;
 	
-	private String primerApellido;
-	private String otrosApellidoa;
+	protected String primerApellido;
+	protected String otrosApellidoa;
 	
 	
 	
