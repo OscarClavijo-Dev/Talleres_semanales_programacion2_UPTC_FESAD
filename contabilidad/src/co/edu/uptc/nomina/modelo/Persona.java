@@ -1,5 +1,7 @@
 package co.edu.uptc.nomina.modelo;
 
+import co.edu.uptc.nomina.modelo.enums.TipoDocEnum;
+
 public class Persona {
 
 	private long id;
@@ -8,9 +10,9 @@ public class Persona {
 	protected String otrosoNombres;
 	
 	protected String primerApellido;
-	protected String otrosApellidoa;
+	protected String otrosApellidos;
 	
-	
+	protected TipoDocEnum tipoDoc;
 	
 	public String getPrimerNombre() {
 		return primerNombre;
@@ -31,10 +33,10 @@ public class Persona {
 		this.primerApellido = primerApellido;
 	}
 	public String getOtrosApellidoa() {
-		return otrosApellidoa;
+		return otrosApellidos;
 	}
 	public void setOtrosApellidoa(String otrosApellidoa) {
-		this.otrosApellidoa = otrosApellidoa;
+		this.otrosApellidos = otrosApellidoa;
 	}
 	
 	
