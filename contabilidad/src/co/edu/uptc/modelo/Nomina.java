@@ -1,14 +1,24 @@
 package co.edu.uptc.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Nomina {
-	
+
 	private List<EmpleadoTerminoFijo> empleadosFijos;
-	
+
 	private List<EmpleadoTerminoIndefinido> empleadosIndefinido;
-	
-	
+
+	public Nomina() {
+		super();
+		// TODO Auto-generated constructor stub
+		empleadosIndefinido = new ArrayList<EmpleadoTerminoIndefinido>();
+		empleadosFijos = new ArrayList<EmpleadoTerminoFijo>();
+	}
+
+	public void agregarEmpleadosFijo(EmpleadoTerminoFijo fijo) {
+		empleadosFijos.add(fijo);
+	}
 
 	public List<EmpleadoTerminoFijo> getEmpleadosFijos() {
 		return empleadosFijos;
@@ -26,6 +36,4 @@ public class Nomina {
 		this.empleadosIndefinido = empleadosIndefinido;
 	}
 
-	
-	
 }

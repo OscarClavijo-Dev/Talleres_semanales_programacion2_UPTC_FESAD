@@ -20,7 +20,7 @@ public class LocalEmpleadoFijo implements IGestionEmpleadoFijo {
 	@Override
 	public void guardar(EmpleadoTerminoFijo empleado) {
 		// TODO Auto-generated method stub
-		
+		nomina.agregarEmpleadosFijo(empleado);
 	}
 
 	@Override
