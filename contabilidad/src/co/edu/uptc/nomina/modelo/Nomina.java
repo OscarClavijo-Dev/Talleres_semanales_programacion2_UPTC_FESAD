@@ -14,6 +14,8 @@ public class Nomina {
         empleadosFijos= new ArrayList<EmpleadoTerminoFijo>();
     }
     
+    
+    
     public List<EmpleadoTerminoFijo> getEmpleadosFijos() {
         return empleadosFijos;
     }

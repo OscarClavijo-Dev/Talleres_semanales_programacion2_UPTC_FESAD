@@ -2,57 +2,60 @@ package co.edu.uptc.nomina.negocio;
 
 import co.edu.uptc.nomina.interfaces.IGestionEmpleadoFijo;
 import co.edu.uptc.nomina.modelo.EmpleadoTerminoFijo;
+import co.edu.uptc.nomina.negocio.NominaConfig;
 import java.util.List;
 
 public class GestionEmpleadoFijo implements IGestionEmpleadoFijo {
+	
     private IGestionEmpleadoFijo fijo;
 
-    public GestionEmpleadoFijo() {
-        this.fijo = new co.edu.uptc.nomina.persistencia.LocalEmpleadoFijo();
-    }
-
-    @Override
-    public void actualizar(EmpleadoTerminoFijo empleado) {
-        fijo.actualizar(empleado);
-    }
-
-    @Override
-    public void eliminar(long id) {
-        fijo.eliminar(id);
-    }
-
-    @Override
-    public void guardar(EmpleadoTerminoFijo empleado) {
-        fijo.guardar(empleado);
-    }
-
-    @Override
-    public List<EmpleadoTerminoFijo> listar() {
-        return fijo.listar();
-    }
-
     public void agregarEmpleado(EmpleadoTerminoFijo empleado) {
-        guardar(empleado);
+    	//TODO reglas de negocio
+    	fijo.guardar(empleado);
     }
 
-    public List<EmpleadoTerminoFijo> listarEmpleados() {
-        return listar();
-    }
+	public GestionEmpleadoFijo(IGestionEmpleadoFijo fijo) {
+		super();
+		this.fijo = fijo;
+	}
 
-    public EmpleadoTerminoFijo buscar(long id) {
-        for (EmpleadoTerminoFijo emp : listar()) {
-            if (emp.getId() == id) {
-                return emp;
-            }
-        }
-        return null;
-    }
+	public List<EmpleadoTerminoFijo> listarEmpleados() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+//Los genere por que estaba dando un error
+	
+	@Override
+	public void actualizar(EmpleadoTerminoFijo empleado) {
+		// TODO Auto-generated method stub
+		
+	}
 
-    public IGestionEmpleadoFijo getFijo() {
-        return fijo;
-    }
+	@Override
+	public void eliminar(long id) {
+		// TODO Auto-generated method stub
+		
+	}
 
-    public void setFijo(IGestionEmpleadoFijo fijo) {
-        this.fijo = fijo;
-    }
+	@Override
+	public void guardar(EmpleadoTerminoFijo empleado) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public EmpleadoTerminoFijo buscar(long numeroDocumento) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<EmpleadoTerminoFijo> listar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+   
+   
+   
 }
