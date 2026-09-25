@@ -4,36 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Nomina {
+    private List<EmpleadoTerminoFijo> empleadosFijos;
+    private List<EmpleadoTerminoIndefinido> empleadosIndefinido;
 
-	private List<EmpleadoTerminoFijo> empleadosFijos;
+    public Nomina() {
+        this.empleadosFijos = new ArrayList<>();
+        this.empleadosIndefinido = new ArrayList<>();
+    }
 
-	private List<EmpleadoTerminoIndefinido> empleadosIndefinido;
+    public void agregarEmpleadoFijo(EmpleadoTerminoFijo empleado) {
+        empleadosFijos.add(empleado);
+    }
 
-	public Nomina() {
-		super();
-		// TODO Auto-generated constructor stub
-		empleadosIndefinido = new ArrayList<EmpleadoTerminoIndefinido>();
-		empleadosFijos = new ArrayList<EmpleadoTerminoFijo>();
-	}
+    public List<EmpleadoTerminoFijo> getEmpleadosFijos() {
+        return empleadosFijos;
+    }
 
-	public void agregarEmpleadosFijo(EmpleadoTerminoFijo fijo) {
-		empleadosFijos.add(fijo);
-	}
+    public List<EmpleadoTerminoIndefinido> getEmpleadosIndefinido() {
+        return empleadosIndefinido;
+    }
 
-	public List<EmpleadoTerminoFijo> getEmpleadosFijos() {
-		return empleadosFijos;
-	}
+    public void setEmpleadosFijos(List<EmpleadoTerminoFijo> empleadosFijos) {
+        this.empleadosFijos = empleadosFijos;
+    }
 
-	public void setEmpleadosFijos(List<EmpleadoTerminoFijo> empleadosFijos) {
-		this.empleadosFijos = empleadosFijos;
-	}
-
-	public List<EmpleadoTerminoIndefinido> getEmpleadosIndefinido() {
-		return empleadosIndefinido;
-	}
-
-	public void setEmpleadosIndefinido(List<EmpleadoTerminoIndefinido> empleadosIndefinido) {
-		this.empleadosIndefinido = empleadosIndefinido;
-	}
-
+    public void setEmpleadosIndefinido(List<EmpleadoTerminoIndefinido> empleadosIndefinido) {
+        this.empleadosIndefinido = empleadosIndefinido;
+    }
 }

@@ -1,22 +1,36 @@
 package co.edu.uptc.nomina.modelo;
 
-public class EmpleadoTerminoIndefinido extends Persona{
-	
-	private String horarioTrabajo;
+import co.edu.uptc.nomina.modelo.enums.TipoDocEnum;
 
-	
-	
-	
-	
-	
-	public String getHorarioTrabajo() {
-		return horarioTrabajo;
-	}
+public class EmpleadoTerminoIndefinido extends Empleado {
+    private String horarioTrabajo;
 
-	public void setHorarioTrabajo(String horarioTrabajo) {
-		this.horarioTrabajo = horarioTrabajo;
-	}
-	
-	
+    public EmpleadoTerminoIndefinido() {
+    }
 
+    public EmpleadoTerminoIndefinido(long id, String primerNombre, String primerApellido,
+                                      TipoDocEnum tipoDoc, double salarioBase, double diasTrabajados,
+                                      String horarioTrabajo) {
+        super(id, primerNombre, primerApellido, tipoDoc, salarioBase, diasTrabajados);
+        this.horarioTrabajo = horarioTrabajo;
+    }
+
+    @Override
+    public double calcularSalario() {
+        return (salarioBase * diasTrabajados) / 30;
+    }
+
+    public String getHorarioTrabajo() {
+        return horarioTrabajo;
+    }
+
+    public void setHorarioTrabajo(String horarioTrabajo) {
+        this.horarioTrabajo = horarioTrabajo;
+    }
+
+    @Override
+    public String toString() {
+        return "Empleado Indefinido: " + getPrimerNombre() + " " + getPrimerApellido() + 
+               " - Horario: " + horarioTrabajo;
+    }
 }
