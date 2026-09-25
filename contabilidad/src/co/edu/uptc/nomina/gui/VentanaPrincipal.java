@@ -1,7 +1,11 @@
 package co.edu.uptc.nomina.gui;
 
+import co.edu.uptc.negocio.dto.CredencialDto;
 import co.edu.uptc.nomina.negocio.GestionSeguridad;
 import co.edu.uptc.nomina.negocio.NominaConfig;
+import co.edu.uptc.nomina.personas.gui.DialogoEmpleadoFijo;
+import co.edu.uptc.nomina.personas.gui.PanelPadreEmpleadoFijo;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -10,7 +14,7 @@ import java.awt.event.WindowEvent;
 public class VentanaPrincipal extends JFrame {
     private NominaConfig config;
     private Evento evento;
-    private DialogoEmpleadoFijo nuevoEmpFijo;
+    private DialogoEmpleadoFijo nuevoEmplFijo;
     private PanelPadreEmpleadoFijo pCentral;
     private PanelLogin pLogin;
     private GestionSeguridad seguridad;
@@ -22,59 +26,66 @@ public class VentanaPrincipal extends JFrame {
         setLocationRelativeTo(null);
 
         // Inicializar componentes
-        config = new NominaConfig();
-        seguridad = new GestionSeguridad();
-        pLogin = new PanelLogin();
         evento = new Evento(this);
-
-        // Agregar listener de cierre de ventana
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                int confirmacion = JOptionPane.showConfirmDialog(
-                    VentanaPrincipal.this,
-                    "¿Está seguro de salir?",
-                    "Confirmar salida",
-                    JOptionPane.YES_NO_OPTION
-                );
-                if (confirmacion == JOptionPane.YES_OPTION) {
-                    System.exit(0);
-                }
-            }
-        });
-
-        setLayout(new BorderLayout());
+        pLogin = new PanelLogin();
+      //TODO por clases abstractas
+        pCentral = new PanelPadreEmpleadoFijo(evento, config);
+        seguridad = new GestionSeguridad();
+        config = new NominaConfig();   
+        evento = new Evento(this);
         add(pLogin, BorderLayout.CENTER);
-        setVisible(true);
+        
+       
+  
     }
-
-    public void cerrarDialogEmpFijo() {
-        if (nuevoEmpFijo != null) {
-            nuevoEmpFijo.dispose();
-        }
-    }
-
-    public void crearEmpleadoFijo() {
-        nuevoEmpFijo = new DialogoEmpleadoFijo(this, evento, "Crear Empleado Fijo", false);
-        nuevoEmpFijo.setVisible(true);
-    }
-
-    public void lanzarDialogoEmpleadoFijo() {
-        crearEmpleadoFijo();
+    
+    public static void main(String[] args) {
+        VentanaPrincipal v = new VentanaPrincipal();
+        v.setVisible(Boolean.TRUE);
     }
 
     public void loguear() {
-        pLogin.setVisible(false);
-        pCentral = new PanelPadreEmpleadoFijo(evento, config);
-        add(pCentral, BorderLayout.CENTER);
-        pCentral.setVisible(true);
-        setTitle("Sistema de Nómina - Empleado Término Fijo");
+    	try {
+    		CredencialDto validar = pLogin.getCredencialesUsuario();
+    		
+    		if(validar != null && seguridad.validarLogueo(validar)) {
+    			pLogin.setVisible(Boolean.FALSE);
+    			add(pCentral, BorderLayout.CENTER);
+    			pCentral.setVisible(Boolean.TRUE);
+    		} else {
+    			JOptionPane.showMessageDialog(this, e.getMessage());
+    		}
+    	} catch	(Exception e) {
+    		//TODO Auto-generated catch block
+    		e.printStackTrace();
+    		JOptionPane.showMessageDialog(this, e.getMessage());
+    	}
+    	
+    	
+    }
+    	
+    public void lanzarDialogoEmpleadoFijo() {
+    	nuevoEmplFijo= new DialogoEmpleadoFijo(evento,"Crear Empleado Fijo", true);
+    	nuevoEmplFijo.setVisible(Boolean.TRUE);
+        
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new VentanaPrincipal());
+    public void cerrarDialogEmpFijo() {
+       nuevoEmplFijo.setVisible(Boolean.FALSE);
+       nuevoEmplFijo=null;
     }
 
+    public void crearEmpleadoFijo() {
+    	config.getGestEmpleadoFijo().agregarEmpleado(nuevoEmplFijo.capturarDatos());
+        cerrarDialogEmpFijo();
+        pCentral.poblarTabla(config.getGestEmpleadoFijo().listarEmpleados());
+    }
+
+   
+
+    
+
+   
     // Getters
     public NominaConfig getConfig() {
         return config;

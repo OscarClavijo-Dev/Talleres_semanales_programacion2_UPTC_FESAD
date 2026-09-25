@@ -7,5 +7,6 @@ public interface IGestionEmpleadoFijo {
     void actualizar(EmpleadoTerminoFijo empleado);
     void eliminar(long id);
     void guardar(EmpleadoTerminoFijo empleado);
+    EmpleadoTerminoFijo buscar(long numeroDocumento);
     List<EmpleadoTerminoFijo> listar();
 }

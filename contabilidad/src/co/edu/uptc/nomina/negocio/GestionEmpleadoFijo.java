@@ -39,6 +39,15 @@ public class GestionEmpleadoFijo implements IGestionEmpleadoFijo {
         return listar();
     }
 
+    public EmpleadoTerminoFijo buscar(long id) {
+        for (EmpleadoTerminoFijo emp : listar()) {
+            if (emp.getId() == id) {
+                return emp;
+            }
+        }
+        return null;
+    }
+
     public IGestionEmpleadoFijo getFijo() {
         return fijo;
     }

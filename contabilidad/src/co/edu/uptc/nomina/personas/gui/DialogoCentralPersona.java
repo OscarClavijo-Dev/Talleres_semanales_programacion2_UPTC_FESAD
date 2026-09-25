@@ -1,5 +1,6 @@
-package co.edu.uptc.nomina.gui;
+package co.edu.uptc.nomina.personas.gui;
 
+import co.edu.uptc.nomina.gui.Evento;
 import co.edu.uptc.nomina.modelo.enums.TipoDocEnum;
 import javax.swing.*;
 import java.awt.*;
