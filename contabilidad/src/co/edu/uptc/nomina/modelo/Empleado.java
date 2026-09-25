@@ -9,12 +9,12 @@ public abstract class Empleado extends Persona {
     public Empleado() {
     }
 
-    public Empleado(long id, String primerNombre, String primerApellido, 
+  /*  public Empleado(long id, String primerNombre, String primerApellido, 
                     TipoDocEnum tipoDoc, double salarioBase, double diasTrabajados) {
         super(id, primerNombre, primerApellido, tipoDoc);
         this.salarioBase = salarioBase;
         this.diasTrabajados = diasTrabajados;
-    }
+    }*/
 
     public abstract double calcularSalario();
 

@@ -23,7 +23,7 @@ public class LocalEmpleadoFijo implements IGestionEmpleadoFijo {
     
     @Override
     public void actualizar(EmpleadoTerminoFijo empleado) {
-        
+        nomina.actualizarEmpleadoFijo(empleado);
     }
 
     @Override
@@ -40,6 +40,20 @@ public class LocalEmpleadoFijo implements IGestionEmpleadoFijo {
 	public EmpleadoTerminoFijo buscar(long numeroDocumento) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public EmpleadoTerminoFijo buscar(Long numDocumento) {
+		return nomina.buscarDocIdentidad(numDocumento);
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public EmpleadoTerminoFijo buscar(long idEmpleado, Long numDocumento) {
+		return null;
+		// TODO Auto-generated method stub
+		
 	}
 
 

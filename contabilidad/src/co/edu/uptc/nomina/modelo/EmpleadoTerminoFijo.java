@@ -5,18 +5,21 @@ import java.time.LocalDate;
 
 public class EmpleadoTerminoFijo extends Empleado {
     private LocalDate fechaTerminacionContrato;
+	public String getNumDocumento;
 
-    public EmpleadoTerminoFijo() {
-    }
 
-    public EmpleadoTerminoFijo(long id, String primerNombre, String primerApellido,
+ /*   public EmpleadoTerminoFijo(long id, String primerNombre, String primerApellido,
                                 TipoDocEnum tipoDoc, double salarioBase, double diasTrabajados,
                                 LocalDate fechaTerminacionContrato) {
         super(id, primerNombre, primerApellido, tipoDoc, salarioBase, diasTrabajados);
         this.fechaTerminacionContrato = fechaTerminacionContrato;
-    }
+    }*/
 
-    @Override
+    public EmpleadoTerminoFijo() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
     public double calcularSalario() {
         return (salarioBase * diasTrabajados) / 30;
     }

@@ -31,7 +31,14 @@ public class Nomina {
         empleadosFijos.add(empleado);
     }
 
- 
+    public void actualizarEmpleadoFijo(EmpleadoTerminoFijo fijoEdicion) {
+    	EmpleadoTerminoFijo antiguo=buscarDocIdentidad(fijoEdicion.getNumDocumento());
+    	empleadosFijos.remove(antiguo);
+    	antiguo.setPrimerNombre(fijoEdicion.getPrimerNombre());
+    	antiguo.setTipoDoc(fijoEdicion.getTipoDoc());
+        empleadosFijos.add(antiguo);
+    }
+
 
     public List<EmpleadoTerminoIndefinido> getEmpleadosIndefinido() {
         return empleadosIndefinido;
@@ -42,4 +49,11 @@ public class Nomina {
     public void setEmpleadosIndefinido(List<EmpleadoTerminoIndefinido> empleadosIndefinido) {
         this.empleadosIndefinido = empleadosIndefinido;
     }
+    
+    public EmpleadoTerminoFijo buscarDocIdentidad(long numDocumento) {
+    	if(EmpleadoTerminoFijo.getNumDocumento()==numDocumento) {
+    		return EmpleadoTerminoFijo;
+    	}
+    }
+    
 }

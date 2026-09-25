@@ -20,6 +20,7 @@ public abstract class DialogoCentralPersona extends JDialog {
 	protected boolean isCrear;
 	protected String tituloDialogo;
 	protected JTextField txtPrimerNombre;
+	protected JTextField txtNumeroDocumento;
 	protected JComboBox<TipoDocEnum> cbxTipoDoc;
 	protected JButton btnGuardar;
     protected JButton btnCerrar;

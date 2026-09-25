@@ -11,7 +11,7 @@ public class EmpleadoTerminoIndefinido extends Empleado {
     public EmpleadoTerminoIndefinido(long id, String primerNombre, String primerApellido,
                                       TipoDocEnum tipoDoc, double salarioBase, double diasTrabajados,
                                       String horarioTrabajo) {
-        super(id, primerNombre, primerApellido, tipoDoc, salarioBase, diasTrabajados);
+        super();
         this.horarioTrabajo = horarioTrabajo;
     }
 

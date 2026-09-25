@@ -56,5 +56,11 @@ public class PanelPadreEmpleadoFijo extends PanelCentral {
        }
     }
 
-    
+    public long getItemSeleccionadoNumero() {
+    	
+    	int fila =tblEmpleados.getSelectedRow();
+    	long var= Long.parseLong(tblEmpleados.getModel().getValueAt(fila, 2).toString());
+    	
+    	return var;
+    }
 }

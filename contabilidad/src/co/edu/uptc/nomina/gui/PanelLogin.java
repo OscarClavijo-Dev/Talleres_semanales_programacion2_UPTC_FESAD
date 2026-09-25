@@ -1,17 +1,19 @@
 package co.edu.uptc.nomina.gui;
 
+import co.edu.uptc.nomina.personas.gui.PanelCentral;
 import co.edu.uptc.negocio.dto.CredencialDto;
 import javax.swing.*;
 import java.awt.*;
 
 public class PanelLogin extends JPanel {
+	
     private JPasswordField pContrasena;
     private JTextField tUsuario;
     private JButton btnIngresar;
     private JButton btnCancelar;
     private Evento evento;
 
-    public PanelLogin() {
+    public PanelLogin(Evento evento) {
         this.evento = evento;
         inicializarComponentes();
     }

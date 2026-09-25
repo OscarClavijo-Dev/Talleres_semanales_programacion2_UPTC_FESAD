@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 
-
+import co.edu.uptc.nomina.modelo.EmpleadoTerminoFijo;
 import co.edu.uptc.nomina.modelo.Persona;
 import co.edu.uptc.nomina.negocio.GestionSeguridad;
 import co.edu.uptc.nomina.negocio.NominaConfig;
@@ -35,12 +35,14 @@ public class VentanaPrincipal extends JFrame {
         
         // Inicializar componentes o relaciones o asociaciones
         evento = new Evento(this);
-        pLogin = new PanelLogin();
+        
+        
+        pLogin = new PanelLogin(evento);
       //TODO por clases abstractas
         pCentral = new PanelPadreEmpleadoFijo(evento);
         seguridad = new GestionSeguridad();
         config = new NominaConfig();   
-        evento = new Evento(this);
+      //  evento = new Evento(this);
         add(pLogin, BorderLayout.CENTER);
         
        
@@ -107,6 +109,29 @@ public class VentanaPrincipal extends JFrame {
         cerrarDialogEmpFijo();
         pCentral.poblarTabla(config.getGestEmpleadoFijo().listarEmpleados());
     }
+    
+    
+    public void actualizarEmpleadoFijoDialogo() {
+    	EmpleadoTerminoFijo nuevoAct=config.getGestEmpleadoFijo().buscarEmpleadoNumDoc(pCentral.getItemSeleccionadoNumero());
+    	lanzarActualizarDialogoEmpleadoFijo(nuevoAct);
+    //	config.getGestEmpleadoFijo().actualizarEmpleado(nuevoAct);
+   //     cerrarDialogEmpFijo();
+    //    pCentral.poblarTabla(config.getGestEmpleadoFijo().listarEmpleados());
+    }
+    
+    public void actualizarEmpleadoFijo() {
+    	EmpleadoTerminoFijo nuevoAct=nuevoEmplFijo.capturarDatos();
+    	config.getGestEmpleadoFijo().actualizarEmpleado(nuevoAct);
+    	cerrarDialogEmpFijo();
+    	pCentral.poblarTabla(config.getGestEmpleadoFijo().listarEmpleados());
+    }
+    
+    public void lanzarActualizarDialogoEmpleadoFijo(EmpleadoTerminoFijo actualizado) {
+    	nuevoEmplFijo= new DialogoEmpleadoFijo(evento, "Crear Empleado Fijo", true);
+    	nuevoEmplFijo.actualizarCampos(actualizado);
+    	nuevoEmplFijo.setVisible(Boolean.TRUE);
+    }
+    
 }
 
    

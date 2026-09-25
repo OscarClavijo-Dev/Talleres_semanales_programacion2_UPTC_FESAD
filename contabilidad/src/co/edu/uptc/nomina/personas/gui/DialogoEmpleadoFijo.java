@@ -1,11 +1,15 @@
 package co.edu.uptc.nomina.personas.gui;
 
+import javax.swing.JTextField;
+
 import co.edu.uptc.nomina.gui.Evento;
 import co.edu.uptc.nomina.modelo.EmpleadoTerminoFijo;
 import co.edu.uptc.nomina.modelo.enums.TipoDocEnum;
 
 
 public class DialogoEmpleadoFijo extends DialogoCentralPersona {
+	
+	private JTextField txtNumeroDocumento;  
 
 	public DialogoEmpleadoFijo(Evento evento, String tituloDialogo, boolean isCrear) {
 		super(evento, tituloDialogo, isCrear);
@@ -30,6 +34,12 @@ public class DialogoEmpleadoFijo extends DialogoCentralPersona {
 			btnGuardar.setActionCommand(Evento.EDITAR_EF);
 		}
 		
+	}
+	
+	public void actualizarCampos(EmpleadoTerminoFijo fijoNuevo) {
+		txtPrimerNombre.setText(fijoNuevo.getPrimerNombre());
+		txtNumeroDocumento.setText(fijoNuevo.getNumDocumento);
+		//TODOS campos adicionales
 	}
 	
 	

@@ -56,17 +56,25 @@ public class Evento  implements ActionListener {
     	//Todo Auto-generated method stub
         String evento = e.getActionCommand();
 
-        if (evento.equals(CANCELAR)) {
-        	JOptionPane.showMessageDialog(null, "hOLA mUNDO");
-        } else if (evento.equals(LOGIN)) {
-        	ventana.loguear();
-        } else if (evento.equals(CREAR_EF)) {
-        	ventana.lanzarDialogoEmpleadoFijo();
-        }else if (evento.equals(CANCELAR_EF)) {
-        	ventana.cerrarDialogEmpFijo();;
-        }
-        
-     }
-    }
+		if (evento.equals(CANCELAR)) {
+			JOptionPane.showMessageDialog(null, "hOLA mUNDO");
+		} else if (evento.equals(LOGIN)) {
+			ventana.loguear();
+		} else if (evento.equals(CREAR_EF)) {
+			ventana.lanzarDialogoEmpleadoFijo();
+		} else if (evento.equals(CANCELAR_EF)) {
+			ventana.cerrarDialogEmpFijo();
+			;
+		} else if (evento.equals(GUARDAR_EF)) {
+			ventana.crearEmpleadoFijo();
+		} else if (evento.equals(ACTUALIZAR_EF)) {
+			ventana.actualizarEmpleadoFijoDialogo();
+			;
+		} else if (evento.equals(EDITAR_EF)) {
+			ventana.actualizarEmpleadoFijo();
+			;
+		}
+	}
+}
 
  
