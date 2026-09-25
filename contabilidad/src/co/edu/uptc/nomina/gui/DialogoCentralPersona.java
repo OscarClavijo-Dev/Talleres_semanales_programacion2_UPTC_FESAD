@@ -47,7 +47,7 @@ public abstract class DialogoCentralPersona extends JDialog {
         btnCerrar = new JButton("Cerrar");
 
         panelBotones.add(btnGuardar);
-        panelBotones(btnCerrar);
+        panelBotones.add(btnCerrar);
 
         add(panelFormulario, BorderLayout.CENTER);
         add(panelBotones, BorderLayout.SOUTH);

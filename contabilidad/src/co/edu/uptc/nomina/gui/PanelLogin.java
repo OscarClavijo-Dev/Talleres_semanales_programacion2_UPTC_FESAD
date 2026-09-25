@@ -37,7 +37,7 @@ public class PanelLogin extends JPanel {
 
         CredencialDto credencial = new CredencialDto();
         credencial.setUsuario(usuario);
-        credencial.setPassword(password);
+        credencial.setPassword(String.valueOf(password).getBytes());   // char[] no es compatible con byte[]
         return credencial;
     }
 
