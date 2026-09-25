@@ -10,8 +10,10 @@ public class NominaConfig {
     private IGestionEmpleadoFijo iFijo;
 
     public NominaConfig() {
-        this.gestEmpleadoFijo = new GestionEmpleadoFijo();
-        this.iFijo = new LocalEmpleadoFijo();
+    	super();
+        //TODO Auto-generated constructor stub
+    	iFijo= new LocalEmpleadoFijo();
+    	gestEmpleadoFijo= new GestionEmpleadoFijo();
     }
 
     public GestionEmpleadoFijo getGestEmpleadoFijo() {

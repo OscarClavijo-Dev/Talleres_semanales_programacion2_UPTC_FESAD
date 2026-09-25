@@ -7,33 +7,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LocalEmpleadoFijo implements IGestionEmpleadoFijo {
+	
     private Nomina nomina;
 
     public LocalEmpleadoFijo() {
-        this.nomina = new Nomina();
-    }
-
-    @Override
-    public void actualizar(EmpleadoTerminoFijo empleado) {
-        // Implementación en memoria - buscar y actualizar
-        List<EmpleadoTerminoFijo> empleados = nomina.getEmpleadosFijos();
-        for (int i = 0; i < empleados.size(); i++) {
-            if (empleados.get(i).getId() == empleado.getId()) {
-                empleados.set(i, empleado);
-                break;
-            }
-        }
-    }
-
-    @Override
-    public void eliminar(long id) {
-        List<EmpleadoTerminoFijo> empleados = nomina.getEmpleadosFijos();
-        empleados.removeIf(emp -> emp.getId() == id);
+    	super();
+    	
+        nomina = new Nomina();
     }
 
     @Override
     public void guardar(EmpleadoTerminoFijo empleado) {
         nomina.agregarEmpleadoFijo(empleado);
+    }
+    
+    @Override
+    public void actualizar(EmpleadoTerminoFijo empleado) {
+        
+    }
+
+    @Override
+    public void eliminar(long id) {
+        
     }
 
     @Override
@@ -41,11 +36,11 @@ public class LocalEmpleadoFijo implements IGestionEmpleadoFijo {
         return nomina.getEmpleadosFijos();
     }
 
-    public Nomina getNomina() {
-        return nomina;
-    }
+	@Override
+	public EmpleadoTerminoFijo buscar(long numeroDocumento) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    public void setNomina(Nomina nomina) {
-        this.nomina = nomina;
-    }
+
 }

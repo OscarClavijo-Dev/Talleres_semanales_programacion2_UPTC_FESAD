@@ -3,13 +3,13 @@ package co.edu.uptc.nomina.gui;
 import co.edu.uptc.negocio.dto.CredencialDto;
 import co.edu.uptc.nomina.negocio.GestionSeguridad;
 
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
-public class Evento extends WindowAdapter implements ActionListener {
+
+public class Evento  implements ActionListener {
     // Constantes de comandos
 	public static final String CANCELAR = "Cancelar";
 	public static final String LOGIN = "Login";
@@ -44,62 +44,29 @@ public class Evento extends WindowAdapter implements ActionListener {
    
 
     private VentanaPrincipal ventana;
- //   private GestionSeguridad seguridad;
+
 
     public Evento(VentanaPrincipal v) {
        ventana = v;
-    //    this.seguridad = new GestionSeguridad();
+  
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
     	//Todo Auto-generated method stub
-        String comando = e.getActionCommand();
+        String evento = e.getActionCommand();
 
         if (evento.equals(CANCELAR)) {
         	JOptionPane.showMessageDialog(null, "hOLA mUNDO");
         } else if (evento.equals(LOGIN)) {
         	ventana.loguear();
         } else if (evento.equals(CREAR_EF)) {
-        	ventana.lanzarDialogoEmpeladoFijo();
+        	ventana.lanzarDialogoEmpleadoFijo();
         }else if (evento.equals(CANCELAR_EF)) {
-        	ventana.cerrarDialigoEmplFijo();;
+        	ventana.cerrarDialogEmpFijo();;
         }
         
      }
     }
 
- /*   private void procesarLogin() {
-        CredencialDto credencial = ventana.getpLogin().getCredencialesUsuario();
-
-        if (credencial == null) {
-            JOptionPane.showMessageDialog(ventana,
-                "Debe ingresar usuario y contraseña",
-                "Error de validación",
-                JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        if (seguridad.validarLogueo(credencial)) {
-            ventana.loguear();
-        } else {
-            JOptionPane.showMessageDialog(ventana,
-                "Usuario o contraseña incorrectos",
-                "Error de autenticación",
-                JOptionPane.ERROR_MESSAGE);
-            ventana.getpLogin().limpiarCampos();
-        }
-    }
-
-    @Override
-    public void windowClosing(WindowEvent e) {
-        int confirmacion = JOptionPane.showConfirmDialog(ventana,
-            "¿Está seguro de salir del sistema?",
-            "Confirmar salida",
-            JOptionPane.YES_NO_OPTION);
-
-        if (confirmacion == JOptionPane.YES_OPTION) {
-            System.exit(0);
-        }
-    }*/
-}
+ 

@@ -2,57 +2,73 @@ package co.edu.uptc.nomina.personas.gui;
 
 import co.edu.uptc.nomina.gui.Evento;
 import co.edu.uptc.nomina.modelo.enums.TipoDocEnum;
-import javax.swing.*;
-import java.awt.*;
+
+import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public abstract class DialogoCentralPersona extends JDialog {
+	
+	protected boolean isCrear;
+	protected String tituloDialogo;
+	protected JTextField txtPrimerNombre;
+	protected JComboBox<TipoDocEnum> cbxTipoDoc;
+	protected JButton btnGuardar;
     protected JButton btnCerrar;
-    protected JButton btnGuardar;
-    protected JComboBox<TipoDocEnum> cbxTipoDoc;
-    protected boolean isCrear;
-    protected String tituloDialogo;
-    protected JTextField txtPrimerNombre;
+    
+    
 
-    public DialogoCentralPersona(Frame owner, String titulo, boolean modal) {
-        super(owner, titulo, modal);
-        this.isCrear = true;
-        this.tituloDialogo = titulo;
-        inicializarComponentes();
-        asignarComandoBotones();
+
+    public DialogoCentralPersona(Evento evento, String tituloDialogo, boolean isCrear) {
+        
+    	this.isCrear=isCrear;
+    	setSize(250, 250);
+    	setTitle(tituloDialogo);
+    	setLayout(new BorderLayout());
+    	cbxTipoDoc = new JComboBox<TipoDocEnum>(TipoDocEnum.values());
+    	txtPrimerNombre = new JTextField();
+    	JPanel pEmpleadoPadre = new JPanel();
+    	JPanel pEmpleado = new JPanel();
+    	pEmpleado.setLayout(new GridLayout(2, 6));
+    	pEmpleado.add(new JLabel("Nombre"));
+    	pEmpleado.add(txtPrimerNombre);
+    	pEmpleado.add(new JLabel("Tipo Documento"));
+    	pEmpleado.add(cbxTipoDoc);
+    	
+    	pEmpleadoPadre.add(pEmpleado);
+    	if(isCrear) {
+    		btnGuardar = new JButton(Evento.GUARDAR);
+    		
+    		
+    	} else {
+    		btnGuardar = new JButton(Evento.EDITAR);
+    	}
+    	
+    	btnCerrar= new JButton(Evento.CANCELAR);
+    	
+    	btnGuardar.addActionListener(evento);
+    	btnCerrar.addActionListener(evento);
+    	btnCerrar.setActionCommand(Evento.CANCELAR_EF);
+    	
+    	JPanel pBotones = new JPanel();
+    	pBotones.add(btnCerrar);
+    	pBotones.add(btnGuardar);
+    	
+    	add(pEmpleadoPadre, BorderLayout.CENTER);
+    	add(pBotones, BorderLayout.SOUTH);
+    	
+    	asignarComandoBotones();
+    	
     }
 
-    public DialogoCentralPersona(Frame owner, Evento evento, String titulo, boolean modal) {
-        this(owner, titulo, modal);
-    }
-
-    protected void inicializarComponentes() {
-        setTitle(tituloDialogo);
-        setSize(500, 400);
-        setLocationRelativeTo(getOwner());
-        setLayout(new BorderLayout());
-
-        JPanel panelFormulario = new JPanel();
-        panelFormulario.setLayout(new GridLayout(6, 2, 10, 10));
-        panelFormulario.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-
-        panelFormulario.add(new JLabel("Tipo Documento:"));
-        cbxTipoDoc = new JComboBox<>(TipoDocEnum.values());
-        panelFormulario.add(cbxTipoDoc);
-
-        panelFormulario.add(new JLabel("Primer Nombre:"));
-        txtPrimerNombre = new JTextField();
-        panelFormulario.add(txtPrimerNombre);
-
-        JPanel panelBotones = new JPanel();
-        btnGuardar = new JButton("Guardar");
-        btnCerrar = new JButton("Cerrar");
-
-        panelBotones.add(btnGuardar);
-        panelBotones.add(btnCerrar);
-
-        add(panelFormulario, BorderLayout.CENTER);
-        add(panelBotones, BorderLayout.SOUTH);
-    }
-
-    protected abstract void asignarComandoBotones();
+   
+   public abstract void asignarComandoBotones();
 }
