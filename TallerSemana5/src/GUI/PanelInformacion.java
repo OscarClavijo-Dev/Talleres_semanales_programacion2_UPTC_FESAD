@@ -6,15 +6,14 @@ import java.awt.*;
 
 public class PanelInformacion extends JPanel {
     
-    // ATRIBUTOS
+    // ATRIBUTOS (según diagrama UML del PDF)
     private JLabel labelNombres;
     private JLabel labelApellidos;
     private JLabel labelDocumento;
     private JLabel labelCodigo;
     private JTextField textNombres;
     private JTextField textApellidos;
-    private JTextField textDocumento;
-    private JTextField textCodigo;  // ✅ AGREGADO: Esta línea faltaba
+    private JTextField textDocumento;  // Este campo contiene el código
     private JLabel numeroUsuarios;
 
     // CONSTRUCTOR
@@ -49,9 +48,6 @@ public class PanelInformacion extends JPanel {
         
         textDocumento = new JTextField();
         textDocumento.setBounds(110, 100, 200, 25);
-        
-        textCodigo = new JTextField();  // ✅ AGREGADO: Inicialización
-        textCodigo.setBounds(110, 135, 200, 25);
 
         // Label número de usuarios
         numeroUsuarios = new JLabel("Usuarios: 0");
@@ -65,8 +61,42 @@ public class PanelInformacion extends JPanel {
         add(labelDocumento);
         add(textDocumento);
         add(labelCodigo);
-        add(textCodigo);  // ✅ AGREGADO
         add(numeroUsuarios);
+    }
+
+    /**
+     * Recolecciona la información de la persona.
+     * @return Una persona con los datos de la GUI.
+     * @throws Exception arroja una excepción si se incumple con algunos de los atributos
+     */
+    public Persona getPersona() throws Exception {
+        Persona nuevaPersona = new Persona();
+        nuevaPersona.setNombres(textNombres.getText());
+        nuevaPersona.setApellidos(textApellidos.getText());
+        nuevaPersona.setCodigo(Integer.parseInt(textDocumento.getText()));
+        
+        return nuevaPersona;
+    }
+
+    /**
+     * @param persona
+     * @param tamanoVector
+     */
+    public void setPersona(Persona persona, int tamanoVector) {
+        if (persona != null) {
+            textNombres.setText(persona.getNombres());
+            textApellidos.setText(persona.getApellidos());
+            textDocumento.setText(String.valueOf(persona.getCodigo()));
+        } else {
+            limpiarCampos();
+        }
+        numeroUsuarios.setText("Usuarios: " + tamanoVector);
+    }
+
+    public void limpiarCampos() {
+        textNombres.setText("");
+        textApellidos.setText("");
+        textDocumento.setText("");
     }
 
     // GETTERS
@@ -82,10 +112,6 @@ public class PanelInformacion extends JPanel {
         return textDocumento.getText();
     }
 
-    public String getCodigo() {  // ✅ CORREGIDO
-        return textCodigo.getText();
-    }
-
     // SETTERS
     public void setNombres(String nombres) {
         textNombres.setText(nombres);
@@ -99,44 +125,7 @@ public class PanelInformacion extends JPanel {
         textDocumento.setText(documento);
     }
 
-    public void setCodigo(String codigo) {  // ✅ CORREGIDO
-        textCodigo.setText(codigo);
-    }
-
     public void setNumeroUsuarios(int numero) {
         numeroUsuarios.setText("Usuarios: " + numero);
-    }
-
-    // MÉTODO para obtener la persona desde los campos
-    public Persona getPersona() throws Exception {
-        Persona persona = new Persona();
-        
-        // Los setters ya lanzan las excepciones
-        persona.setNombres(getNombres());
-        persona.setApellidos(getApellidos());
-        persona.setCodigoFromString(getCodigo());
-        
-        return persona;
-    }
-
-    // MÉTODO para establecer los datos de una persona en los campos
-    public void setPersona(Persona persona, int tamanoVector) {
-        if (persona != null) {
-            setNombres(persona.getNombres());
-            setApellidos(persona.getApellidos());
-            setCodigo(String.valueOf(persona.getCodigo()));
-            setDocumento(""); // El documento no está en el modelo
-        } else {
-            limpiarCampos();
-        }
-        setNumeroUsuarios(tamanoVector);
-    }
-
-    // MÉTODO para limpiar campos
-    public void limpiarCampos() {
-        textNombres.setText("");
-        textApellidos.setText("");
-        textDocumento.setText("");
-        textCodigo.setText("");  // ✅ CORREGIDO
     }
 }

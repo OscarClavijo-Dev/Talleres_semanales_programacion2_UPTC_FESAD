@@ -4,7 +4,6 @@ import negocio.ControlPersonas;
 import negocio.Persona;
 import javax.swing.*;
 import java.awt.*;
-import java.util.ResourceBundle;
 
 public class VentanaPrincipal extends JFrame {
     
@@ -65,42 +64,23 @@ public class VentanaPrincipal extends JFrame {
         setVisible(true);
     }
 
-    // MÉTODOS
-
+    /**
+     * Agregar una persona a la lista de control
+     */
     public void agregarPersona() {
         try {
-            // Obtener persona del panel (lanza excepción si hay error)
-            Persona persona = panelInformacion.getPersona();
-            
-            // Agregar al controlador
-            controlPersonas.add(persona);
-            
-            // Actualizar visualización
+            controlPersonas.add(panelInformacion.getPersona());
+            limpiarInformacion();
             panelInformacion.setNumeroUsuarios(controlPersonas.getSecuenciaIngreso());
-            
-            // Mensaje de éxito
-            JOptionPane.showMessageDialog(this, 
-                "Persona agregada correctamente", 
-                "Éxito", 
-                JOptionPane.INFORMATION_MESSAGE);
-                
-            // Limpiar campos
-            panelInformacion.limpiarCampos();
-            
         } catch (NumberFormatException e) {
-            // Excepción por código no numérico
-            ResourceBundle bundle = ResourceBundle.getBundle("excepciones_es");
-            String mensaje = bundle.getString("excepcion.persona.errorcodigononumerico");
-            JOptionPane.showMessageDialog(this, 
-                mensaje, 
-                "Error de Formato", 
+            JOptionPane.showMessageDialog(this,
+                ControlPersonas.EXCEPCIONES.getString("excepcion.persona.errorcodigononumerico"),
+                "Error de Formato",
                 JOptionPane.ERROR_MESSAGE);
-                
         } catch (Exception e) {
-            // Otras excepciones (nombres/apellidos vacíos, código inválido)
-            JOptionPane.showMessageDialog(this, 
-                e.getMessage(), 
-                "Error de Validación", 
+            JOptionPane.showMessageDialog(this,
+                e.getMessage(),
+                "Error de Validación",
                 JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -145,13 +125,9 @@ public class VentanaPrincipal extends JFrame {
                 String path = archivo.getParent();
                 String nombre = archivo.getName();
                 
-                // Limpiar personas actuales
                 controlPersonas.setSecuenciaIngreso(0);
-                
-                // Leer archivo
                 controlPersonas.readArchivo(path, nombre);
                 
-                // Mostrar primera persona si existe
                 if (controlPersonas.getSecuenciaIngreso() > 0) {
                     posicionVisualPersona = 0;
                     mostrarPersonaActual();
@@ -231,7 +207,6 @@ public class VentanaPrincipal extends JFrame {
         }
     }
 
-    // MAIN
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             try {
